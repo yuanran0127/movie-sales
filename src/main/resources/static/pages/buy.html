@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>购买电影</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{../css/style.css}">
+    <style type="text/css">
+        .pull-right {width: 600px;}
+        .pull-right .form-group .control-label{text-align:right;}
+        .panel-footer{margin-top:20px;margin-bottom: 30px;}
+        .panel-footer .text{text-indent: -15em;}
+        .ml18{margin-left: 90px;}
+        .purchasenum > span{
+            color:#898989;
+            font-family: "宋体";
+            padding: 8px 24px 0 0;
+        }
+        .purchasenum > i,
+        .purchasenum > input{
+            display: inline-block;
+            width: 30px;
+            height:30px;
+            line-height: 30px;
+            text-align: center;
+            color:#bbbbbb;
+            border: 1px solid #cecece;
+        }
+        .purchasenum > input{
+            width:45px;
+            box-sizing: content-box;
+            vertical-align: top;
+            margin-left: -4px;
+            border-left-style: none;
+        }
+        .addpurchase > button{
+            width: 186px;
+            height: 45px;
+            font:bold 16px/45px "微软雅黑";
+            cursor: pointer;
+        }
+        .addpurchase .purchase{
+            border: 1px solid #f0d5a0;
+            background-color: #fcf8e3;
+            color:#8a6d3b;
+            margin-top: -11px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            document.getElementById("purchase").onclick=function () {
+                if(window.confirm("您确定要购买吗")){
+                    alert("购买成功!");
+                    return true;
+                }else
+                    return false;
+            }
+        }
+    </script>
+</head>
+<body class="container">
+<br>
+<br>
+<div class="alert alert-warning"><h5>购买电影</h5></div>
+<br>
+
+<div class="row" th:object="${movie}">
+    <div class="col-xs-6 col-md-3">
+        <a class="thumbnail">
+            <img th:src="@{/pages/img/}+${movie.getMPhoto()}">
+        </a>
+    </div>
+
+    <div class="pull-right">
+        <form action="/movie/buy/createOrder">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">电影ID：</label>
+                <div class="col-sm-3">
+                    <span name="mId" th:text="${movie.MId}"></span>
+                </div>
+            </div><br>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">电影名称：</label>
+                <div class="col-sm-3">
+                    <span name="mName" th:text="${movie.MName}"></span>
+                </div>
+            </div><br>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">类型：</label>
+                <div class="col-sm-3">
+                    <span id="mtype" name="mType" th:text="${movie.MType}"></span>
+                </div>
+            </div><br>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">地区：</label>
+                <div class="col-sm-3">
+                    <span id="marea" name="mArea" th:text="${movie.MArea}"></span>
+                </div>
+            </div><br>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">上映时间：</label>
+                <div class="col-sm-3">
+                    <span id="mduration" name="mDuration" th:text="${movie.MDuration}"></span>
+                </div>
+            </div><br>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">播放时长：</label>
+                <div class="col-sm-3">
+                    <span id="mReleaseTime" name="mReleaseTime" th:text="${movie.MReleaseTime}"></span>
+                </div>
+            </div><br>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">单价：</label>
+                <div class="col-sm-3">
+                    <span id="mprice" name="mPrice" th:text="${movie.MPrice}"></span>
+                </div>
+            </div><br>
+
+            <div class="form-group">
+                <label class="purchasenum mt25 col-sm-3 control-label">购买数量：</label><input type="number" min="1" step="1" value="1" name="buynum">
+            </div><br>
+
+            <div class="addpurchase">
+                <input type="hidden" name="mid" th:value="${movie.MId}">
+                <button id="purchase" type="submit" class="purchase mt25 ml18">立即购买</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="panel-footer" th:object="${movie}">
+    <label class="col-sm-3 control-label">电影简介：</label><br>
+    <p class="text" th:text="*{MDescription}">简介</p>
+</div>
+
+</body>
+</html>

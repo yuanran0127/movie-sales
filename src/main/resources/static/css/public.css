@@ -1,0 +1,31 @@
+#左导航栏{
+    /*background: red;*/
+    position: fixed;
+    width: 10%;
+    left: 5%;
+    top: 30%;
+    font-family: 隶书;
+    font-size: 30px;
+
+}
+#上方导航{
+    /*background: blue;*/
+    position: fixed;
+    width: 100%;
+    top: 100px;
+    left: 30%;
+    top: 2%;
+}
+#操作界面 {
+    position: absolute;
+    /*background: yellow;*/
+    top: 100px;
+    width: 70%;
+    left: 25%;
+}
+#修改密码{
+    background: red;
+    position: relative;
+    height: 300px;
+    width: 80%;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="../css/public.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<!--上方导航栏-->
+<nav id="上方导航" class="navbar navbar-default" th:fragment="上方导航">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">[[${session.map.admin.admName}]]</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a th:href="@{/index}">首页</a></li>
+            <li><a th:href="@{/logout}">退出登录</a></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<!--左边导航栏-->
+<div id="左导航栏" th:fragment="左导航栏">
+
+
+    <table class="table table-condensed">
+
+        <tbody>
+        <tr>
+            <td>
+                <!-- Contextual button for informational alert messages -->
+                <!--                <button type="button" class="btn btn-info">用户管理</button>-->
+
+                <a th:href="@{/admin/pageUser(currentpage=1)}">用户管理</a>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <!--                <button type="button"th:href="@{movie/movie}" class="btn btn-warning">电影管理</button>-->
+                <a th:href="@{/admin/pageMovie(currentpage=1)}">影院管理</a>
+
+            </td>
+            <!-- Indicates caution should be taken with this action -->
+        </tr>
+        <tr>
+            <td>
+                <!-- Contextual button for informational alert messages -->
+                <!--                <button type="button" class="btn btn-info">用户管理</button>-->
+
+                <a th:href="@{/admin/AllOrder}">订单管理</a>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <a th:href="@{/admin/toUpdatePassword}">密码修改</a>
+            </td>
+            <!-- Indicates a successful or positive action -->
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+
+</body>
+</html>

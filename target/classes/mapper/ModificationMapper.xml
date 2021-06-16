@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movies.mapper.ModificationMapper">
+
+    <select id="getUser" resultType="com.movies.pojo.User">
+        select * from user where u_id = #{uid}
+    </select>
+
+    <update id="update" parameterType="com.movies.pojo.User">
+        update user set u_name=#{uName},u_sex=#{uSex},u_phone_num=#{uPhoneNum},u_username=#{uUsername},u_password=#{uPassword}
+        where u_id=#{uId}
+    </update>
+
+    <select id="selectUser" resultType="string">
+        select u_name from user where u_id=#{uid}
+    </select>
+
+</mapper>

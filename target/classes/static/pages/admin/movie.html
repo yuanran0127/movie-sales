@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <link th:href="@{../css/public.css}" type="text/css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div th:replace="public.html::上方导航"></div>
+<div th:replace="public.html::左导航栏"></div>
+<div id="操作界面">
+    <form th:action="@{/admin/MovieByName}" th:method="get">
+        <input th:name="mName" class="input-medium search-query" th:placeholder="电影名" type="text"/>
+        <button type="submit" class="btn btn-info">查找</button>
+        <a type="button" class="btn btn-success" th:href="@{/admin/toaddMovie}">增加</a>
+    </form>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>电影id</th>
+            <th>电影名称</th>
+            <th>电影上映时间</th>
+            <th>电影持续时间(分钟)</th>
+            <th>电影类型</th>
+            <th>电影地区</th>
+            <th>电影图片</th>
+            <th>电影价格</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="movie:${page.getPage().getRecords()}" class="success">
+            <td th:text="${movie.getMId()}"></td>
+            <td th:text="${movie.getMName()}"></td>
+            <td th:text="${movie.getMDuration()}"></td>
+            <td th:text="${movie.getMReleaseTime()}"></td>
+            <td th:text="${movie.getMType()}"></td>
+            <td th:text="${movie.getMArea()}"></td>
+            <td th:text="${movie.getMPhoto()}"></td>
+            <td th:text="${movie.getMPrice()}"></td>
+            <td>
+                <a th:href="@{|/admin/toUpdateMovie/${movie.getMId()}|}" th:name="mId" type="button"
+                   class="btn btn-warning">修改</a>
+                <a th:href="@{|/admin/deleteMovie/${movie.getMId()}|}" th:name="mId" class="btn btn-danger"
+                   th:onclick="deleteMovie()">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation">
+        <ul class="pagination" th:if="${page.getPage().getSize()>0}">
+            <li>
+                <a th:href="@{${page.getPath()}(currentpage=1)}" aria-label="Previous">
+                    <span aria-hidden="true">首页</span>
+                </a>
+            </li>
+            <!--            <li>-->
+            <!--                <a th:href="@{/admin/pageUser(currentpage=${page.getPage().getCurrent()-1})}" aria-label="Previous">-->
+            <!--                    <span aria-hidden="true">&laquo;</span>-->
+            <!--                </a>-->
+            <!--            </li>-->
+            <li th:each="i:${#numbers.sequence(1,page.getPage().getPages())}">
+                <a th:href="@{${page.getPath()}(currentpage=${i})}" th:text="${i}"></a>
+            </li>
+            <!--            <li>-->
+            <!--                <a th:href="@{/admin/pageUser(currentpage=${page.getPage().getCurrent()+1})}" aria-label="Next">-->
+            <!--                    <span aria-hidden="true">&raquo;</span>-->
+            <!--                </a>-->
+            <!--            </li>-->
+            <li>
+                <a th:href="@{${page.getPath()}(currentpage=${page.getPage().getPages()})}" aria-label="Previous">
+                    <span aria-hidden="true">末页</span>
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+
+
+</div>
+
+<script>
+    function deleteMovie() {
+        if (window.confirm("确认删除此电影")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+</body>
+</html>

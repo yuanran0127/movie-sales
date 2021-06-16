@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>兔眼电影</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{../css/style.css}">
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{../css/font-awesome/css/font-awesome.min.css}">
+    <style type="text/css">
+        #logo{margin-top: -52px;}
+        .title{margin-left: -1051px;}
+        .dropdown-toggle{margin-top: -49px;}
+        .row{margin-left: 34px;}
+        .movie{margin-top: 35px;}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="headerwrap-top">
+            <div class="container">
+            </div>
+        </div>
+
+        <div class="headerwrap-bottom">
+            <div class="container">
+                <div id="logo">
+                    <img th:src="@{../pages/img/logo.jpg}" width="50%" height="20%">
+                </div>
+
+                <nav class="pull-right">
+                    <!-- Single button -->
+                    <div class="title">
+                        兔眼电影
+                    </div>
+
+<!--                    <a th:text="${uName}"></a>-->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            个人中心 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/movie/modification}">修改资料</a></li>
+                            <li><a th:href="@{/movie/order}">我的订单</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a th:href="@{/userLogout}">退出</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="searchbox">
+                    <form th:action="@{/movie/searchmovie}" method="post" accept-charset="utf-8" style="margin-left: 150px;">
+                        <input name="searchfield" id="searchfield" type="text" placeholder="请输入电影名称">
+                        <button class="searchbutton" type="submit">
+                            <i class="fa"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- widewrapper main  -->
+    <div class="movie container">
+        <aside class="select">
+            <ul class="select-list">
+                <div id="alltype">
+                    <li>类型</li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/movie/select(type=all)}" class="atag">全部</a>
+                    <span th:each="type:${typeList}">
+                        <a th:href="@{/movie/select(type=${type.TName})}" th:text="${type.TName}" name="type" class="atag" th:value="${type.TName}">type</a>
+                    </span>
+                </div>
+
+                <div id="allyear">
+                    <li>年份</li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/movie/select(year=all)}" name="year" value="all" class="atag" th:selected="selected">全部</a>
+                    <span>
+                        <a th:href="@{/movie/select(year=2021)}" class="atag">2021</a>
+                        <a th:href="@{/movie/select(year=2020)}" class="atag">2020</a>
+                        <a th:href="@{/movie/select(year=2019)}" class="atag">2019</a>
+                        <a th:href="@{/movie/select(year=2018)}" class="atag">2018</a>
+                    </span>
+                </div>
+
+                <div id="allarea">
+                    <li>地区</li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/movie/select(area=all)}" class="atag" th:selected="selected">全部</a>
+                    <span th:each="area:${areaList}">
+                        <a th:href="@{/movie/select(area=${area})}" th:text="${area}" name="area" th:value="${area}" class="atag">中国大陆</a>
+                    </span>
+                </div><br>
+            </ul>
+        </aside>
+
+        <div class="row" th:width="200" th:height="300">
+            <div class="realmovie" th:each="movie:${movieList}">
+                <article class="movie-info">
+                    <img th:src="@{../pages/img/}+${movie.getMPhoto()}" alt="" height="300" width="200">
+                    <h5><a th:href="@{/movie/buy/}+${movie.MId}" th:text="${movie.MName}" th:value="${movie.MId}" name="mid">name</a></h5>
+                    <hr>
+                    <div class="btn-group" role="group">
+                        <form th:action="@{/movie/buy/}+${movie.MId}" method="get">
+                            <button name="mid" th:value="${movie.MId}" type="submit" class="btn btn-middle btn-success">购买</button>
+                        </form>
+                    </div>
+                </article>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

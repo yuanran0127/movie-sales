@@ -1,0 +1,167 @@
+
+body {
+  font-size: 16px;
+  line-height: 27px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  color: #5b6268;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #3e4246;
+}
+
+/* =============== 
+    灰色栏
+==================*/
+.headerwrap-top {
+  padding-top: 55px;
+  padding-bottom: 55px;
+}
+
+.headerwrap-top #logo {
+  float: left;
+  display: block;
+  padding-left: 10px;
+}
+
+.headerwrap-bottom {
+  background-color: #f1f1f1;
+  color: #444;
+  font-size: 16px;
+  min-height: 63px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+/*============== 
+        右上
+================ */
+.pull-right{
+  margin-right: 10px;
+}
+
+.pull-right .nav-li {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 16px;
+}
+
+.pull-right .nav-li > li {
+  margin-left: 10px;
+  margin-left: 10px;
+  color: #444;
+  line-height: 14px;
+  border: 1px solid #DDD;
+  border-radius: 25px;
+  padding: 0 10px 0 10px;
+}
+
+.pull-right .nav-pills > li > a {
+  color: #444;
+  padding: 11px 0 11px 20px;
+  line-height: 14px;
+}
+
+/* ===========
+Elements that are used througout clean, such as Searchboxes, Blog elements, Widgets, etc. etc. 
+==============*/
+.title {
+  color: #7b8690;
+  float: left;
+  margin: 19px 0 0 15px;
+}
+
+/* The searchbox in the subheader on top of the site */
+.searchbox {
+  display: inline-block;
+  min-width: 210px;
+  margin-bottom: 16px;
+  margin: 16px 0 0 640px;
+  color: #7b8690;
+}
+
+.searchbox .fa {
+  color: #7b8690;
+  font-size: 19px;
+}
+
+.searchbox .searchbutton {
+  display: inline-block;
+  border: none;
+  line-height: 20px;
+  height: 31px;
+  vertical-align: middle;
+}
+
+.searchbox .searchfield {
+  border: none;
+  height: 22px;
+  line-height: 22px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 5px 6px 4px 6px;
+  vertical-align: middle;
+  display: inline-block;
+  margin-bottom: 0;
+  width: 160px;
+  font-size: 16px;
+  margin-left: 10px;
+  outline: none;
+}
+
+/* ==============
+    The list
+=================*/
+.select-list {
+  list-style: none;
+}
+
+.select-list li {
+  line-height: 20px;
+  margin-bottom: 14px;
+  border: 1px solid #ddd;
+  padding: 5px 0 5px 0;
+  border-radius: 25px;
+  width:70px;
+  text-align: center;
+  font-size: 15px;
+  display:inline-block;
+}
+
+.select-list a{
+  margin-right: 30px;
+}
+
+.select-list .all{
+  padding: 0 5px 0 5px;
+}
+
+/* ============
+The movie main page boxes 
+=============== */
+.row{
+  margin-left: 40px;
+}
+
+.movie-info {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-bottom: 40px;
+  border-bottom: none;
+  display: inline-block;
+  line-height:10px;
+  text-align: center;
+}
+
+.movie-info img {
+  margin-bottom: -5px;
+  width: 100%;
+  opacity: 0.8;
+}
+

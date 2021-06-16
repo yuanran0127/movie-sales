@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movies.mapper.BuyMapper">
+
+    <select id="selectMovie" resultType="com.movies.pojo.Movie" parameterType="int">
+        select * from movie where m_id=#{mid}
+    </select>
+
+    <insert id="insertOrder">
+        insert into movieorder (m_id,u_id,odate,onum) values(#{m_id.mId},#{u_id},#{odate},#{onum});
+    </insert>
+
+</mapper>

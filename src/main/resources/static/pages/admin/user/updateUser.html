@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+    <link th:href="@{../css/public.css}" type="text/css" rel="stylesheet">
+    <link href="../../css/public.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="public.html::上方导航"></div>
+<div th:replace="public.html::左导航栏"></div>
+<div id="操作界面">
+    <div id="updateUser">
+        <form th:action="@{/admin/updateUser}" method="get">
+            <!--            <p>用户id：<input type="text" th:name="uId" th:value="${user.getUId()}"></p>-->
+            <p>用户姓名：<input type="text" th:name="uName" th:value="${user.getUName()}"></p>
+            <p>用户性别：<input type="text" th:name="uSex" th:value="${user.getUSex()}"></p>
+            <p>用户电话号码：<input type="text" th:name="uPhoneNum" th:value="${user.getUPhoneNum()}"></p>
+            <p>用户名：<input type="text" th:name="uUsername" th:value="${user.getUUsername()}"></p>
+            <p>用户密码：<input type="text" th:name="uPassword" th:value="${user.getUPassword()}"></p>
+            <p>
+                <button th:onclick="updateSuccess()" type="submit" class="btn btn-info">确认</button>
+                <a type="button" class="btn btn-info" th:href="@{/admin/alluser}">取消</a>
+            </p>
+        </form>
+        <script>
+            function updateSuccess() {
+                if (window.confirm("修改成功")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>
+
+    </div>
+</div>
+</body>
+</html>

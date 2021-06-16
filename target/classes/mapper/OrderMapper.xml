@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.movies.mapper.OrderMapper">
+
+    <resultMap  id="selectMovie" type="com.movies.pojo.Order">
+        <id property="oid" column="oid"></id>
+        <result property="u_id" column="u_id"/>
+        <result property="odate" column="odate"></result>
+        <result property="onum" column="onum"></result>
+        <result property="allPrice" column="allprice"></result>
+        <association property="m_id" javaType="com.movies.pojo.Movie">
+            <id property="mId" column="m_id"></id>
+            <result property="mName" column="m_name"></result>
+            <result property="mDescription" column="m_description"></result>
+            <result property="mDuration" column="m_duration"></result>
+            <result property="mReleaseTime" column="m_release_time"></result>
+            <result property="mType" column="m_type"></result>
+            <result property="mArea" column="m_area"></result>
+            <result property="mPhoto" column="m_photo"></result>
+            <result property="mPrice" column="m_price"></result>
+        </association>
+    </resultMap>
+
+    <select id="getOrder" resultMap="selectMovie" parameterType="int">
+        select *,o.onum*m.m_price allprice from movieorder o,user u,movie m
+        where m.m_id=o.m_id and u.u_id=o.u_id
+        and o.u_id = #{uid}
+    </select>
+
+    <delete id="delete" parameterType="int">
+        delete from movieorder where oid=#{oid}
+    </delete>
+    <select id="getAllOrder" resultMap="selectMovie">
+        select *,o.onum*m.m_price allprice from movieorder o,user u,movie m
+        where m.m_id=o.m_id and u.u_id=o.u_id order by o.u_id asc
+
+    </select>
+</mapper>

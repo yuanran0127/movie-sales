@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改电影</title>
+    <link href="../../css/public.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="public.html::上方导航"></div>
+<div th:replace="public.html::左导航栏"></div>
+<div id="操作界面">
+    <div id="updateMovie">
+        <form th:action="@{/admin/updateMovie}" th:method="post" enctype="multipart/form-data">
+            <p>电影名称： <input th:name="mName" th:type="text" th:value="${map.movie.getMName()}"></p>
+            <p>电影描述： <input th:name="mDescription" th:type="text" th:value="${map.movie.getMDescription()}"></p>
+            <!--            <p>电影上映时间： <input th:name="mDuration" th:type="Integer" th:value="${map.movie.getMDuration()}" ></p>-->
+            <!--            <div th:class="from-group">-->
+            <!--                <label th:for="date">年-月-日</label>-->
+            <!--                <input th:type="date" th:name="mDuration"&lt;!&ndash; th:value="${map.movie.getMDuration()}&ndash;&gt; id="date" value=""/>-->
+            <!--            </div>-->
+            <!--            <p>电影上映时间： <input th:name="mDuration" th:type="Integer" th:value="${map.movie.getMDuration()}"></p>-->
+            <div th:class="from-group">
+                <label th:for="date"> 电影上映时间：</label>
+                <input th:name="mDuration" th:id="date" th:type="date" >
+
+            </div>
+            <p>电影持续时间(分钟)： <input th:name="mReleaseTime" th:type="Integer" th:value="${map.movie.getMReleaseTime()}"></p>
+            <p>电影类型:<input th:name="mType" th:type="text" th:value="${map.movie.getMType()}"></p>
+            <p>电影地区：<input th:name="mArea" th:type="text" th:value="${map.movie.getMArea()}"></p>
+            <p>电影电影图片：<input th:name="mPhoto" th:type="file"></p>
+            <p>电影电影价格：<input th:name="mPrice" th:type="Integer" th:value="${map.movie.getMPrice()}"></p>
+            <p>
+                <button type="submit" class="btn btn-success">确认</button>
+                <a th:href="@{/admin/tomovie}" type="button" class="btn btn-info">取消</a>
+            </p>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
